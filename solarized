@@ -3,6 +3,9 @@
 use strict;
 use warnings;
 
+use DateTime;
+use DateTime::Event::Sunrise;
+
 my %solarized_colors = (
     "base03"    => "#002b36",
     "base02"    => "#073642",
@@ -76,11 +79,14 @@ my %schemes = (
 sub on_start {
     my ($self) = @_;
 
-    my $startup_scheme = $self->x_resource("%.default");
+    my $longitude = $self->x_resource("%.longitude");
+    my $latitude = $self->x_resource("%.latitude");
 
-    if(!$startup_scheme || $startup_scheme !~ m/(dark|light)/) {
-        $startup_scheme = "dark";
-    }
+    my $sunrise = DateTime::Event::Sunrise->sunrise(longitude => $longitude, latitude  => $latitude);
+    my $sunset = DateTime::Event::Sunrise->sunset(longitude => $longitude, latitude => $latitude);
+    my $day_set = DateTime::SpanSet->from_sets(start_set => $sunrise, end_set => $sunset);
+
+    my $startup_scheme = $day_set->contains(DateTime->now()) ? 'light' : 'dark';
 
     load_scheme($self, \%{$schemes{$startup_scheme}});
     $self->{current_scheme} = $startup_scheme;
