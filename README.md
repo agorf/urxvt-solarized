@@ -32,10 +32,10 @@ to calculate sunrise/sunset times. For Debian:
 
 Enable it in your `~/.Xresources` or equivalent:
 
-    URxvt.perl-ext-common:      solarized
-    URxvt.keysym.Mod4-c:        perl:solarized:toggle
-    URxvt.solarized.latitude:   37.9838
-    URxvt.solarized.longitude:  23.7275
+    URxvt.perl-ext-common:     solarized
+    URxvt.keysym.Mod4-c:       perl:solarized:toggle
+    URxvt.solarized.latitude:  37.9838
+    URxvt.solarized.longitude: 23.7275
 
 Things to note:
 
