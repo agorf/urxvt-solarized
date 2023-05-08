@@ -36,6 +36,7 @@ Enable it in your `~/.Xresources` or equivalent:
     URxvt.keysym.Mod4-c:       perl:solarized:toggle
     URxvt.solarized.latitude:  37.9838
     URxvt.solarized.longitude: 23.7275
+    URxvt.solarized.altitude:  -0.833
 
 Things to note:
 
@@ -43,6 +44,16 @@ Things to note:
   context of the current terminal
 - The latitude and longitude of Athens, Greece, is used to determine sunrise and
   sunset times (necessary for the automatic switching)
+- The default altitude of `-0.833` is used (can be omitted). From the
+  [module][]'s documentation:
+  > This is the height of the Sun at sunrise or sunset. In astronomical context,
+  > the altitude or height is the angle between the Sun and the local horizon.
+  > It is expressed as degrees, usually with a negative number, since the Sun is
+  > below the horizon.
+  > Default value is -0.833, that is when the sun's upper limb touches the
+  > horizon, while taking in account the light refraction.
+  > Positive altitude are allowed, in case the location is near a mountain range
+  > behind which the sun rises or sets.
 
 Now merge the changes:
 

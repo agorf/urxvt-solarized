@@ -81,9 +81,10 @@ sub on_start {
 
     my $longitude = $self->x_resource("%.longitude");
     my $latitude = $self->x_resource("%.latitude");
+    my $altitude = $self->x_resource("%.altitude") || -0.833;
 
-    my $sunrise = DateTime::Event::Sunrise->sunrise(longitude => $longitude, latitude  => $latitude);
-    my $sunset = DateTime::Event::Sunrise->sunset(longitude => $longitude, latitude => $latitude);
+    my $sunrise = DateTime::Event::Sunrise->sunrise(longitude => $longitude, latitude  => $latitude, altitude => $altitude);
+    my $sunset = DateTime::Event::Sunrise->sunset(longitude => $longitude, latitude => $latitude, altitude => $altitude);
     my $day_set = DateTime::SpanSet->from_sets(start_set => $sunrise, end_set => $sunset);
 
     my $startup_scheme = $day_set->contains(DateTime->now()) ? 'light' : 'dark';
